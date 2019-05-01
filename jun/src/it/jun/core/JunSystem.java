@@ -24,8 +24,8 @@ public class JunSystem {
 		String regex = "java";
 
 		if (OS_NAME.contains("win")) {
-			cmnd = new String[] {};
-			regex = "";
+			cmnd = new String[] {"tasklist", "/FI", "pid eq " + pid};
+			regex = ".*java[w]{0,1}.exe.*";
 		}
 
 		BufferedReader br = null;
