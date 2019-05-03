@@ -25,7 +25,7 @@ public class JunSystem {
 
 		if (OS_NAME.contains("win")) {
 			cmnd = new String[] {"tasklist", "/FI", "pid eq " + pid};
-			regex = ".*java[w]{0,1}.exe.*";
+			regex = ".*java[w]{0,1}\\.exe.*";
 		}
 
 		BufferedReader br = null;
@@ -38,7 +38,7 @@ public class JunSystem {
 			br = new BufferedReader(isr);
 			String stdo = null;
 			while ((stdo = br.readLine()) != null) {
-				if (Pattern.matches(regex, stdo)) {
+				if (Pattern.matches(regex, stdo.trim())) {
 					br.close();
 					return true;
 				}

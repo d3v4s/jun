@@ -27,14 +27,14 @@ public class Jun {
 		if (!file.exists())
 			file.createNewFile();
 
-		int pid = JunSystem.getInstance().getProcessId();
+//		int pid = JunSystem.getInstance().getProcessId();
 
 		RandomAccessFile raf = null;
 		if (file.length() > 1) {
 			raf = new RandomAccessFile(file, "r");
 			raf.seek(0);
 			String pidRead = raf.readLine();
-			if (Integer.valueOf(pidRead) < pid && JunSystem.getInstance().pidIsJavaRunning(pidRead)) {
+			if (JunSystem.getInstance().pidIsJavaRunning(pidRead)) {
 				raf.close();
 				throw new ApplicationException("L'applicazione e' gia' in esecuzione");
 			}
