@@ -27,10 +27,8 @@ public class Jun {
 		if (!file.exists())
 			file.createNewFile();
 
-//		int pid = JunSystem.getInstance().getProcessId();
-
 		RandomAccessFile raf = null;
-		if (file.length() > 1) {
+		if (file.length() > 0) {
 			raf = new RandomAccessFile(file, "r");
 			raf.seek(0);
 			String pidRead = raf.readLine();
@@ -38,6 +36,8 @@ public class Jun {
 				raf.close();
 				throw new ApplicationException("L'applicazione e' gia' in esecuzione");
 			}
+			file.delete();
+			file.createNewFile();
 		}
 
 		try {
@@ -93,6 +93,7 @@ public class Jun {
 		unlock(FILE_NAME);
 	}
 
+	/* metodo per forzare l'istanza */
 	public void forceLock() throws IOException, FileLockException {
 		forceLock(FILE_NAME);
 	}
