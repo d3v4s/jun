@@ -59,6 +59,7 @@ public class Jun {
 		file.delete();
 	}
 
+	/* metodo per forzare l'istanza */
 	public void forceLock(String path) throws IOException, FileLockException {
 		unlock(path);
 		File file = new File(path);
