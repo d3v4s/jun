@@ -18,7 +18,7 @@ public class Jun {
 
 	/* singleton */
 	public static Jun getInstance() {
-		return (jun = (jun == null) ? new Jun() : jun);
+		return jun = jun == null ? new Jun() : jun;
 	}
 
 	/* metodo per provare bloccare l'istanza */
@@ -64,7 +64,7 @@ public class Jun {
 		unlock(path);
 		File file = new File(path);
 		if (file.exists()) {
-			String msg = "Impossibile eliminare il file lock: '" + file.getAbsolutePath() + "'";
+			String msg = "Impossibile eliminare il file di lock: '" + file.getAbsolutePath() + "'";
 			throw new FileLockException(msg);
 		}
 

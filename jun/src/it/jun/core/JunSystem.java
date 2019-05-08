@@ -12,13 +12,16 @@ public class JunSystem {
 	private static JunSystem system;
 	private final String OS_NAME = System.getProperty("os.name").toLowerCase();
 
+	/* costruttore */
 	private JunSystem() {
 	}
 
+	/* singleton */
 	protected static JunSystem getInstance() {
 		return (system = (system == null) ? new JunSystem() : system);
 	}
-	
+
+	/* metodo che controlla se il pid trovato nel file e' in esecuzione ed e' una jvm */
 	protected boolean pidIsJavaRunning(String pid) throws SystemException {
 		String cmnd[] = {"ps", "-p", pid, "-o", "comm="};
 		String regex = "java";
@@ -64,10 +67,12 @@ public class JunSystem {
 		return false;
 	}
 
+	/* metodo che ritorna pid int */
 	protected int getProcessId() {
 		return Integer.valueOf(getProcessIdString());
 	}
-	
+
+	/* metodo che ritorna pid string */
 	protected String getProcessIdString() {
 		return ManagementFactory.getRuntimeMXBean().getName().split("@")[0];
 	}
