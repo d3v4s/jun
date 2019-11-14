@@ -1,5 +1,10 @@
 package it.jun.exception;
 
+/**
+ * Class for system exception
+ * @author Andrea Serra
+ *
+ */
 public class SystemException extends Exception {
 	private static final long serialVersionUID = -8484356341104048941L;
 

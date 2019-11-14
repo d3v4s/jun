@@ -1,5 +1,10 @@
 package it.jun.exception;
 
+/**
+ * Class for application exception
+ * @author Andrea Serra
+ *
+ */
 public class ApplicationException extends Exception {
 	private static final long serialVersionUID = 2898178185166062316L;
 
