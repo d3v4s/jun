@@ -1,4 +1,4 @@
-package it.jun.core;
+package jun;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -8,9 +8,9 @@ import java.io.RandomAccessFile;
 import java.lang.management.ManagementFactory;
 import java.util.regex.Pattern;
 
-import it.jun.exception.ApplicationException;
-import it.jun.exception.FileLockException;
-import it.jun.exception.SystemException;
+import exception.ApplicationException;
+import exception.FileLockException;
+import exception.SystemException;
 
 /**
  * Class to block th second instance of an application
@@ -40,8 +40,7 @@ public class Jun {
 	 */
 	public void tryLock(String path) throws IOException, ApplicationException, SystemException {
 		File file = new File(path);
-		if (!file.exists())
-			file.createNewFile();
+		if (!file.exists()) file.createNewFile();
 
 		RandomAccessFile raf = null;
 		if (file.length() > 0) {
@@ -64,8 +63,7 @@ public class Jun {
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
-			if (raf != null)
-				raf.close();
+			if (raf != null) raf.close();
 		}
 	}
 
@@ -105,8 +103,7 @@ public class Jun {
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
-			if (raf != null)
-				raf.close();
+			if (raf != null) raf.close();
 		}
 	}
 

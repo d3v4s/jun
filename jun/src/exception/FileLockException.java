@@ -1,4 +1,4 @@
-package it.jun.exception;
+package exception;
 
 /**
  * Class for file lock exception
