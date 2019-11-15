@@ -13,7 +13,7 @@ import exception.FileLockException;
 import exception.SystemException;
 
 /**
- * Class to block th second instance of an application
+ * Class to block the second instance of an application
  * @author Andrea Serra
  *
  */
