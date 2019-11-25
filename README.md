@@ -1,4 +1,6 @@
 # Jun
-Running only one instance of java application
+Running only one instance of java application.
 
-Libreria Java che consente di blccare una seconda istanza del programma.
+Java library that allows you to block a second instance of the program.
+
+For more info read the [wiki](https://github.com/d3v4s/jun/wiki)
