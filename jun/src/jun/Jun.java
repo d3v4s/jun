@@ -38,34 +38,6 @@ public class Jun {
 	/* metodo per provare bloccare l'istanza */
 	/**
 	 * method to try to lock a new instance
-	 * @throws IOException
-	 * @throws ApplicationException
-	 * @throws SystemException
-	 */
-	public void tryLock() throws IOException, ApplicationException, SystemException {
-		tryLock(FILE_NAME);
-	}
-
-	/**
-	 * method to unlock the instance
-	 */
-	public void unlock() {
-		unlock(FILE_NAME);
-	}
-
-	/* metodo per forzare l'istanza */
-	/**
-	 * method to force the lock of instance
-	 * @throws IOException
-	 * @throws FileLockException
-	 */
-	public void forceLock() throws IOException, FileLockException {
-		forceLock(FILE_NAME);
-	}
-
-	/* metodo per provare bloccare l'istanza */
-	/**
-	 * method to try to lock a new instance
 	 * @param path of lock file
 	 * @throws IOException
 	 * @throws ApplicationException
@@ -121,7 +93,7 @@ public class Jun {
 		unlock(path);
 		File file = new File(path);
 		if (file.exists()) {
-			String msg = "Unable to delete the lock file: '" + file.getAbsolutePath() + "'";
+			String msg = String.format("Unable to delete the lock file: '%s'", file.getAbsolutePath());
 			throw new FileLockException(msg);
 		}
 
@@ -140,6 +112,34 @@ public class Jun {
 		}
 	}
 
+	/* metodo per provare bloccare l'istanza */
+	/**
+	 * method to try to lock a new instance
+	 * @throws IOException
+	 * @throws ApplicationException
+	 * @throws SystemException
+	 */
+	public void tryLock() throws IOException, ApplicationException, SystemException {
+		tryLock(FILE_NAME);
+	}
+
+	/**
+	 * method to unlock the instance
+	 */
+	public void unlock() {
+		unlock(FILE_NAME);
+	}
+
+	/* metodo per forzare l'istanza */
+	/**
+	 * method to force the lock of instance
+	 * @throws IOException
+	 * @throws FileLockException
+	 */
+	public void forceLock() throws IOException, FileLockException {
+		forceLock(FILE_NAME);
+	}
+
 	/* ################################################################################# */
 	/* END PUBLIC METHODS */
 	/* ################################################################################# */
@@ -149,12 +149,11 @@ public class Jun {
 	/* ################################################################################# */
 
 	/**
-	 * method that check if pid proccess is a Java Application and it's running
+	 * method that check if pid proccess is running and it's a Java Application
 	 * @param pid of proccess
 	 * @return true if running and is Java Application, else false
 	 * @throws SystemException
 	 */
-	
 	private boolean pidIsJavaRunning(String pid) throws SystemException {
 		String cmnd[] = {"ps", "-p", pid, "-o", "comm="};
 		String regex = "java";
@@ -181,20 +180,22 @@ public class Jun {
 			}
 			br.close();
 		} catch (Exception e) {
-			if (br != null)
+			if (br != null) {
 				try {
 					br.close();
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
-			throw new SystemException("Error while searching PID.\n" + e.getMessage());
+			}
+			throw new SystemException(String.format("Error while searching PID.\n%s", e.getMessage()));
 		} finally {
-			if (br != null)
+			if (br != null) {
 				try {
 					br.close();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
+			}
 		}
 		return false;
 	}
