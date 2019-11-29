@@ -1,4 +1,5 @@
-jun/bin/
-jun/.settings/*
+/jun/bin/
+/jun/.settings/*
+/jun/version
 LICENSE
 README.md
