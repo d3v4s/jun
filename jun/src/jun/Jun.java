@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.RandomAccessFile;
 import java.lang.management.ManagementFactory;
+import java.text.MessageFormat;
 import java.util.regex.Pattern;
 
 import exception.ApplicationException;
@@ -92,10 +93,7 @@ public class Jun {
 	public void forceLock(String path) throws IOException, FileLockException {
 		unlock(path);
 		File file = new File(path);
-		if (file.exists()) {
-			String msg = String.format("Unable to delete the lock file: '%s'", file.getAbsolutePath());
-			throw new FileLockException(msg);
-		}
+		if (file.exists()) throw new FileLockException(MessageFormat.format("Unable to delete the lock file: '{0}'", file.getAbsolutePath()));
 
 		file.createNewFile();
 
@@ -187,7 +185,7 @@ public class Jun {
 					e1.printStackTrace();
 				}
 			}
-			throw new SystemException(String.format("Error while searching PID.\n%s", e.getMessage()));
+			throw new SystemException(MessageFormat.format("Error while searching PID.\n{0}", e.getMessage()));
 		} finally {
 			if (br != null) {
 				try {
